@@ -1,10 +1,11 @@
 import react, {Component, Fragments} from 'react';
+import Header from './common/header'
 
 class App extends Component{
   render(){
     return (
-      <div>
-        hello
+      <div >
+        <Header/>
       </div>
     )
   }
