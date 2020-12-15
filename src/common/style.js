@@ -41,10 +41,11 @@ float: ${props => props.pos};
 
 export const NavSearch = styled.input.attrs({
 	placeholder: '搜索'
-})`
+})
+`
 	width: 160px;
 	height: 38px;
-	padding: 0 30px 0 20px;
+	padding: 0 35px 0 20px;
 	margin-top: 9px;
 	margin-left: 20px;
 	box-sizing: border-box;
@@ -74,7 +75,8 @@ export const NavSearch = styled.input.attrs({
 	}
 `;
 
-export const Addition = styled.div`
+export const Addition = styled.div
+`
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -82,7 +84,8 @@ export const Addition = styled.div`
 	height: 56px;
 `;
 
-export const Button = styled.div`
+export const Button = styled.div
+`
 	float: right;
 	margin-top: 9px;
 	margin-right: 20px;
@@ -116,5 +119,8 @@ export const SearchWrapper = styled.div
     border-radius:15px;
     background: red;
     text-align: center;
+    &.focused{
+      background: #777
+    }
   }
 `
