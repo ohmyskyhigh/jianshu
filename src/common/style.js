@@ -107,7 +107,6 @@ export const SearchWrapper = styled.div
 `
   position: relative;
   float: Left;
-  background: green;
   .iconfont{
     position: absolute;
     right: 5px;
@@ -117,10 +116,9 @@ export const SearchWrapper = styled.div
     width: 30px;
     line-height: 30px;
     border-radius:15px;
-    background: red;
     text-align: center;
     &.focused{
-      background: #777
+      background: #888;
     }
   }
 `

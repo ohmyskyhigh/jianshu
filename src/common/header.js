@@ -1,9 +1,14 @@
-import React, { Component, Fragment, useState} from 'react'
-import PropTypes from 'prop-types'
-import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Button, Addition, SearchWrapper } from './style.js'
+import React, { Component, Fragment, useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
+import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Button, Addition, SearchWrapper } from './style.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFocus } from './actionCreator';
+
 
 function Header() {
-  const [isFocus, setFocus] = useState(false)
+  const isFocusDat = useSelector((state) => state.get('header').get('isFocus'));
+  const dispatch = useDispatch();
+
   return (
     <Fragment>
       <HeaderWrapper>
@@ -19,10 +24,10 @@ function Header() {
             <NavSearch
               placeholder='搜索'
               type='text'
-              className={isFocus ? 'focused': ''}
-              onFocus={console.log('focus')}
-              onBlur={console.log('blur')}/>
-            <span className="iconfont">&#xe614;</span>
+              className={isFocusDat ? 'focused': ''}
+              onFocus={()=>dispatch(setFocus(true))}
+              onBlur={()=>dispatch(setFocus(false))}/>
+            <span className={isFocusDat ? 'iconfont focused': 'iconfont'}>&#xe614;</span>
           </SearchWrapper>
         </Nav>
         <Addition>
@@ -32,7 +37,6 @@ function Header() {
           <Button>注册</Button>
         </Addition>
       </HeaderWrapper>
-
     </Fragment>
   )
 }
