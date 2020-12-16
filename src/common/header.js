@@ -1,12 +1,27 @@
 import React, { Component, Fragment, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Button, Addition, SearchWrapper } from './style.js';
+import {
+  HeaderWrapper,
+  Logo,
+  Nav,
+  NavItem,
+  NavSearch,
+  Button,
+  Addition,
+  SearchWrapper,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoRefresh,
+  SearchInfoList,
+  SearchInfoItem,
+  SearchInfoHeader,
+} from './style.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFocus } from './actionCreator';
 
 
 function Header() {
-  const isFocusDat = useSelector((state) => state.get('header').get('isFocus'));
+  const isFocus = useSelector((state) => state.get('header').get('isFocus'));
   const dispatch = useDispatch();
 
   return (
@@ -24,10 +39,11 @@ function Header() {
             <NavSearch
               placeholder='搜索'
               type='text'
-              className={isFocusDat ? 'focused': ''}
+              className={isFocus ? 'focused': ''}
               onFocus={()=>dispatch(setFocus(true))}
               onBlur={()=>dispatch(setFocus(false))}/>
-            <span className={isFocusDat ? 'iconfont focused': 'iconfont'}>&#xe614;</span>
+            {showSearchInfo(isFocus)}
+            <span className={isFocus ? 'iconfont focused': 'iconfont'}>&#xe614;</span>
           </SearchWrapper>
         </Nav>
         <Addition>
@@ -39,6 +55,33 @@ function Header() {
       </HeaderWrapper>
     </Fragment>
   )
+}
+
+const showSearchInfo = (isShow) =>{
+  if(isShow){
+    return (
+      <SearchInfo>
+        <SearchInfoHeader>
+          <SearchInfoTitle>
+            热门搜索
+          </SearchInfoTitle>
+          <SearchInfoRefresh>
+            换一批
+          </SearchInfoRefresh>
+        </SearchInfoHeader>
+        <SearchInfoList>
+          <SearchInfoItem>地图</SearchInfoItem>
+          <SearchInfoItem>地图</SearchInfoItem>
+          <SearchInfoItem>地图</SearchInfoItem>
+          <SearchInfoItem>地图</SearchInfoItem>
+          <SearchInfoItem>地图</SearchInfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    )
+  }
+  else{
+    return null;
+  }
 }
 
 export default Header;

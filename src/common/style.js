@@ -121,4 +121,53 @@ export const SearchWrapper = styled.div
       background: #888;
     }
   }
+`;
+
+export const SearchInfo = styled.div
 `
+  margin-left: 20px;
+  margin-top: 20px;
+  top: 20px;
+  width: 160px;
+  padding: 10px 10px 10px 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+`;
+
+export const SearchInfoHeader = styled.div
+`
+  overflow: hidden;
+`;
+
+export const SearchInfoTitle = styled.div
+`
+  font-size: 12px;
+  float: left;
+  top:0;
+  left:0;
+  width: 50%;
+`;
+
+export const SearchInfoRefresh = styled.div
+`
+  font-size: 12px;
+  float: right;
+  top:0;
+  width: 50%;
+  text-align: right;
+`;
+
+export const SearchInfoList = styled.div
+`
+  overflow:hidden;
+`;
+
+export const SearchInfoItem = styled.a
+`
+  display: block;
+  border: 1px solid #ddd;
+  color: #969696;
+  padding: 1px;
+  float: left;
+  font-size: 12px;
+  margin: 10px 4px 5px 4px;
+`;
