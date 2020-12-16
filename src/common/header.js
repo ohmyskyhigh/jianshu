@@ -17,13 +17,13 @@ import {
   SearchInfoHeader,
 } from './style.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFocus } from './actionCreator';
+import { getHotSearch } from './actionCreator';
 
 
 function Header() {
-  const isFocus = useSelector((state) => state.get('header').get('isFocus'));
+  const [isFocus, setFocus] = useState(false);
   const dispatch = useDispatch();
-
+  const hotSearches = useSelector((state) => state.get('header').get('hotSearch'));
   return (
     <Fragment>
       <HeaderWrapper>
@@ -40,9 +40,12 @@ function Header() {
               placeholder='搜索'
               type='text'
               className={isFocus ? 'focused': ''}
-              onFocus={()=>dispatch(setFocus(true))}
-              onBlur={()=>dispatch(setFocus(false))}/>
-            {showSearchInfo(isFocus)}
+              onFocus={()=>{
+                setFocus(true)
+                dispatch(getHotSearch());
+              }}
+              onBlur={()=>setFocus(false)}/>
+            {showSearchInfo(isFocus, hotSearches)}
             <span className={isFocus ? 'iconfont focused': 'iconfont'}>&#xe614;</span>
           </SearchWrapper>
         </Nav>
@@ -57,7 +60,7 @@ function Header() {
   )
 }
 
-const showSearchInfo = (isShow) =>{
+const showSearchInfo = (isShow, hotSearches) =>{
   if(isShow){
     return (
       <SearchInfo>
@@ -70,11 +73,11 @@ const showSearchInfo = (isShow) =>{
           </SearchInfoRefresh>
         </SearchInfoHeader>
         <SearchInfoList>
-          <SearchInfoItem>地图</SearchInfoItem>
-          <SearchInfoItem>地图</SearchInfoItem>
-          <SearchInfoItem>地图</SearchInfoItem>
-          <SearchInfoItem>地图</SearchInfoItem>
-          <SearchInfoItem>地图</SearchInfoItem>
+          {hotSearches.map((item, idx) =>{
+            return (
+              <SearchInfoItem key={idx}>{item}</SearchInfoItem>
+            )
+          })}
         </SearchInfoList>
       </SearchInfo>
     )
