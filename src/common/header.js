@@ -1,12 +1,12 @@
 import React, { Component, Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Button, Addition, SearchWrapper } from './style.js'
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
-function Header (){
-  const [isFocus, setFocus] = useState(false)
-  console.log(isFocus)
+export default function Header (){
+  const isFocusDef = useSelector((state)=> state.isFocus)
+  const [isFocus, setFocus] = useState(isFocusDef)
   return (
     <Fragment>
       <HeaderWrapper>
@@ -39,13 +39,3 @@ function Header (){
     </Fragment>
   )
 }
-
-const mapState2Props = (state)=>{
-  return '';
-}
-
-const mapDispatch2Props = (dispatch)=>{
-  return '';
-}
-
-export default connect(mapState2Props, mapDispatch2Props)(Header);
