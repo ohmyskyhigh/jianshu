@@ -42,7 +42,9 @@ function Header() {
               className={isFocus ? 'focused': ''}
               onFocus={()=>{
                 setFocus(true)
-                dispatch(getHotSearch());
+                if(hotSearches.size<1){
+                  dispatch(getHotSearch());
+                }
               }}
               onBlur={()=>setFocus(false)}/>
             {showSearchInfo(isFocus, hotSearches)}

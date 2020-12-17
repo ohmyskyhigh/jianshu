@@ -11,7 +11,6 @@ export const getHotSearch = ()=>{
   hotSearch();
   return (dispatch)=>{axios.get('/hotsearch')
           .then(res=>{
-            console.log(res.data)
             const action = setHotSearch(res.data);
             dispatch(action);
           })
